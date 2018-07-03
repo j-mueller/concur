@@ -38,29 +38,3 @@ library:
       source-dirs: src-ghc
       dependencies:
       - ghcjs-base-stub >=0.1
-executables:
-  concur-react-multi-entry:
-    js-sources: jsbits/index.compiled.js
-    main: MultiEntry.hs
-    source-dirs: examples
-    dependencies:
-    - concur-react
-  concur-react-hilo:
-    js-sources: jsbits/index.compiled.js
-    main: HiLo.hs
-    source-dirs: examples
-    dependencies:
-    - concur-react
-    - random
-  concur-react-menu:
-    js-sources: jsbits/index.compiled.js
-    main: Menu.hs
-    source-dirs: examples
-    dependencies:
-    - concur-react
-  concur-react-calculator:
-    js-sources: jsbits/index.compiled.js
-    main: Calc.hs
-    source-dirs: examples
-    dependencies:
-    - concur-react
