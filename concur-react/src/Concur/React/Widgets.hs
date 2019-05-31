@@ -47,6 +47,17 @@ mkEventHandlerAttr evtName = do
   let attr = VAttr evtName $ Right (atomically . notify n . unsafeCoerce)
   return (attr, await n)
 
+elEventBlocking
+  :: JSString
+  -> (JSVal -> a)
+  -> JSString
+  -> [VAttr]
+  -> HTML
+  -> Widget HTML a
+elEventBlocking evtname xtract tag attrs child = awaitViewAction $ \n ->
+    let attr = VAttr evtname $ Right (atomically . notify n . xtract . unsafeCoerce)
+    in [vnode (unsafeCoerce tag) (attr:attrs) child]
+
 -- Handle arbitrary events on an element.
 elEvent :: (ShiftMap (Widget HTML) m, MultiAlternative m, Monad m, MonadSTM m)
         => JSString
